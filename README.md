@@ -1,1 +1,1 @@
-# python-projects w
+this i s the personal AI assistant project made with python libraries such as os,datetime,random,pyttsx3,pywhatkit,pyautogui etc. This assistant can talk to you, give your answres and do many tasks also play game with you. 
