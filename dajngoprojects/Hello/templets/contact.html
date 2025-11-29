@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact{% endblock title %}
+
+{% block body %}
+<style>
+  .bg-image {
+    background-image: url('https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=1470&q=80');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    min-height: 100vh;
+  }
+  .form-container {
+    max-width: 500px;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.9); /* thoda transparent */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+  }
+  input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  .alert-box {
+  width: 50%;
+  margin: 20px auto; /* Center horizontally */
+  text-align: center;
+  }
+
+.alert {
+  padding: 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-family: sans-serif;
+  }
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+</style>
+
+{% if messages %}
+  <div class="alert-box">
+    {% for message in messages %}
+      <p class="alert alert-success">{{ message }}</p>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<div class="bg-image">
+  <div class="form-container">
+    <h2>Feedback Form</h2>
+    <form method="post" action="/contact" >
+      {% csrf_token %}
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="phone">Phone:</label>
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+
+      <label for="desc">Feedback:</label>
+      <textarea id="desc" name="desc" rows="4" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock body %}
